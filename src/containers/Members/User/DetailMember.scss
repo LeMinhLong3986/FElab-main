@@ -1,0 +1,42 @@
+.member-detail-container {
+    margin-top: 10px;
+    width: 820px;
+    position: absolute;
+    left: 25%;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    background: #fff;
+    border-radius: 10px;
+
+
+    .member-detail-header {
+        height: 100px;
+        text-align: center;
+        font-weight: 550;
+        font-size: 45px;
+        text-transform: uppercase;
+        padding-top: 40px;
+        color: #95a5a6;
+    }
+
+    .member-detail-page {
+
+        .member-image {
+            height: 300px;
+            width: 100%;
+
+            background: center center no-repeat;
+            background-size: contain;
+            // box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .member-infor {
+            padding-top: 30px;
+            // padding-bottom: px;
+
+            img {
+                width: 100%;
+            }
+
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "homeheader": {
+        "single": "Đơn giản",
+        "double": "Đôi",
+        "member": "Thành viên",
+        "welcome": "Xin chào"
+    },
+    "menu": {
+        "system": {
+            "header": "Hệ thống",
+            "system-administrator": {
+                "header": "Quản trị hệ thống",
+                "user-manage": "Quản lý người sử dụng",
+                "user-redux": "Quản lý người dùng với redux",
+                "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
+            },
+            "system-parameter": {
+                "header": "Tham số hệ thống"
+            }
+        },
+        "admin": {
+            "manage-user": "Người dùng",
+            "manage-admin": "Quản lý admin",
+            "crud-user": "CRUD người dùng",
+            "crud-redux": "CRUD với Redux",
+            "manage-project": "Quản lý dự án",
+            "project": "Dự án",
+            "schedule": "Quản lý lịch họp",
+            "team": "Nhóm",
+            "manage-team": "Quản lý nhóm"
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "homeheader": {
+        "single": "Single",
+        "double": "Double",
+        "member": "Members",
+        "welcome": "Welcome"
+    },
+    "menu": {
+        "system": {
+            "header": "System",
+            "system-administrator": {
+                "header": "System Administrator",
+                "user-manage": "User manage",
+                "user-redux": "User Redux manage",
+                "register-package-group-or-account": "Register service package for group/account"
+            },
+            "system-parameter": {
+                "header": "System-parameter"
+            }
+        },
+        "admin": {
+            "manage-user": "User",
+            "manage-admin": "Manage Admin",
+            "crud-user": "CRUD User",
+            "crud-redux": "CRUD Redux",
+            "manage-project": "Manage Projects",
+            "project": "Projects",
+            "schedule": "Meeting Schedule",
+            "team": "Team",
+            "manage-team": "Manage Team"
+        }
+    }
+}
