@@ -1,121 +1,83 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { FormattedMessage } from 'react-intl';
+import './DetailProject.scss';
+import { getAllDetailProjectById, getAllCodeService } from '../../../services/userService';
+import _ from 'lodash';
 import HomeHeader from '../../HomePage/HomeHeader';
-import './DetailProject.scss'
+import HomeFooter from '../../HomePage/HomeFooter';
+import { Divider } from '@mui/material';
+
 class DetailProject extends Component {
-    // Long lam
+
     constructor(props) {
-        super(props);
-        this.state = {
-            arrUserId: [],
-            dataDetailProject: {},
-        }
+        super(props)
+        this.state = ({
+            detailProject: {}
+        })
     }
-
-
     async componentDidMount() {
-        if (this.props.match && this.props.match.params && this.props.match.params.id){
-            let id = this.props.match.params.id;
+        if (this.props.match
+            && this.props.match.params
+            && this.props.match.params.id) {
 
-            let res = await getAllDetailProjectById({
-                id: id
-            });
-
-
-            if (res && res.errCode ===  0) {
-                let data = res.data;
-                let arrUserId = [];
-                if (data && !_.isEmpty(res.data)) {
-                    let arr = data.userProject;
-                    if (arr && arr.length > 0) {
-                        arr.map(item => {
-                            arrUserId.push(item.userId)
-                        })
-                    }
-                }
-
+            let id = this.props.match.params.id
+            let res = await getAllDetailProjectById(id)
+            if (res && res.errCode === 0) {
                 this.setState({
-                    dataDetailProject: res.data,
-                    arrUserId: arrUserId,
+                    detailProject: res.data
                 })
+
             }
-        }    
+
+        }
     }
 
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.language !== prevProps.language) {
-
-        }
+        
     }
 
     render() {
-        let { arrUserId, dataDetailProject } = this.state;
-
-        let { language } = this.props;
+        console.log(this.props.match.params.id)
+        let { detailProject } = this.state
+        let nameVi = `${detailProject.name}`
         return (
-            <div className="detail-project-container">
-                <HomeHeader />
-                <div className="detail-project-body">
-                    <div className="description-project">
-                        {dataDetailProject && !_.isEmpty(dataDetailProject)
-                            &&
-                            <>
-                                <div>{dataDetailProject.name}</div>
-                                <div dangerouslySetInnerHTML={{__html: dataDetailProject.descriptionHTML}}>
-
-                                </div>
-
-                            </>
-                        }
-
+            <React.Fragment>
+                <HomeHeader isShowBanner={false} />
+                <div className='project-detail-container'>
+                    <div className='project-detail-header'>
+                        {nameVi}
                     </div>
+                    <Divider sx={{ fontFamily: '', fontSize: '1.5rem', fontWeight: '700', color: '#7f8c8d', marginY: '30px', paddingX: '60px' }}>
+                        Thông tin chi tiết
+                    </Divider>
+                    <div className='project-detail-page'>
+                        <div className='project-image'
+                            style={{ backgroundImage: `url(${detailProject && detailProject.image ? detailProject.image : ''})` }}
+                        ></div>
+                        <div className='project-infor'>
 
-                    {arrUserId && arrUserId.length > 0 &&
-                        arrUserId.map((item,index) => {
-                            return (
-                                <div className='each-user' key={index}>
-                                    <div className='us-content-left'>
-                                        <div className='profile-user'>
-                                            <ProfileUser
-                                                userId={item}
-                                                isShowDescriptionUser={true}
-                                                isShowLinkDetail={true}
-                                                isShowPrice={false}
+                            
 
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className='us-content-right'>
-                                        <div className='user-schdule'>
-                                            <UserSchedule
-                                                userIdFromParent={item}
-                                            />
-
-                                        </div>
-                                        <div className='user-extra-infor'>
-                                            <UserExtraInfor
-                                                userIdFromParent={item}
-                                            />
-                                        </div>
-                                    </div>
-
-                                </div>
-                            )
-                        })
-                    }
-
+                            {detailProject  && detailProject.descriptionHTML
+                                && <div dangerouslySetInnerHTML={{ __html: detailProject.descriptionHTML }}>
+                                </div>}
+                        </div>
+                    </div>
+                    <HomeFooter />
                 </div>
 
-            </div>
+            </React.Fragment>
         );
     }
+
+        
 }
 
 const mapStateToProps = state => {
     return {
-        language: state.app.language,
+
     };
 };
 

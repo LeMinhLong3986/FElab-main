@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './ManageProjects.scss'
+import * as actions from '../../../store/actions';
 import { CommonUtils } from '../../../utils'
-import { createNewProject } from '../../../services/userService'
+import { createNewProjectService } from '../../../services/userService'
 import { toast } from 'react-toastify'
 
 import MarkdownIt from 'markdown-it';
@@ -27,9 +28,11 @@ class ManageProjects extends Component {
 
     }
 
-    async componentDidUpdate(prevProps, prevState, snapshot) {
+    async componentDidUpdate(prevProps, prevState, snapshot){
 
     }
+        
+
     handleOnChangeInput = (event, id) => {
         let stateCopy = { ...this.state }
         stateCopy[id] = event.target.value
@@ -50,7 +53,7 @@ class ManageProjects extends Component {
     }
     handleSaveNewProject = async () => {
         // console.log('An check state: ', this.state)
-        let res = await createNewProject(this.state)
+        let res = await createNewProjectService(this.state)
         if (res && res.errCode === 0) {
             toast.success('Add a new project success!')
             this.setState({

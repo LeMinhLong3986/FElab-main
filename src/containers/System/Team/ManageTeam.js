@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './ManageTeam.scss'
 import { CommonUtils } from '../../../utils'
-import { createNewProject } from '../../../services/userService'
+import { createNewProjectService } from '../../../services/userService'
 import { toast } from 'react-toastify'
 
 import MarkdownIt from 'markdown-it';
@@ -51,7 +51,7 @@ class ManageTeam extends Component {
     }
     handleSaveNewProject = async () => {
         // console.log('An check state: ', this.state)
-        let res = await createNewProject(this.state)
+        let res = await createNewProjectService(this.state)
         if (res && res.errCode === 0) {
             toast.success('Add a new team success!')
             this.setState({

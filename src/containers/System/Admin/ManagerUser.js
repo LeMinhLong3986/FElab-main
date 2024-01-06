@@ -115,15 +115,6 @@ class ManagerUser extends Component {
                 object.value = item.id
                 result.push(object)
             })
-            // Long lam
-            if (type === 'PROJECT') {
-                inputData.map((item, index) => {
-                    let object = {};
-                    object.label = item.name;
-                    object.value = item.id;
-                    result.push(object)
-                })
-            }
         }
 
         

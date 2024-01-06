@@ -1,31 +1,42 @@
-.detail-project-container {
-    .description-project {
-        background-color: white !important;
-        padding: 10px;
-        margin: 15px 0;
+.project-detail-container {
+    margin-top: 10px;
+    width: 820px;
+    position: absolute;
+    left: 25%;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    background: #fff;
+    border-radius: 10px;
 
-        h1,
-        h2,
-        h3 {
-            font-size: 16px;
-            font-weight: 600;
-        }
+
+    .project-detail-header {
+        height: 100px;
+        text-align: center;
+        font-weight: 550;
+        font-size: 30px;
+        text-transform: uppercase;
+        padding-top: 40px;
+        color: #95a5a6;
     }
 
-    .search-sp-user {
-        select {
-            height: 30px;
-            padding:5px 8px;
-            border: none;
-            outline: none;
-            border-radius: 3px;
-            cursor: pointer;
+    .project-detail-page {
+
+        .project-image {
+            height: 300px;
+            width: 100%;
+
+            background: center center no-repeat;
+            background-size: contain;
+            // box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
         }
-    }
-    .detail-project-body {
-        padding: 0 100px;
-        background: #eee;
-        display: flex;
-        flex-direction: column;
+
+        .project-infor {
+            padding-top: 30px;
+            // padding-bottom: px;
+
+            img {
+                width: 100%;
+            }
+
+        }
     }
 }

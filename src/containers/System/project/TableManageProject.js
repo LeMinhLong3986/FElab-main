@@ -10,60 +10,63 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Tooltip from '@mui/material/Tooltip'
 
 
-class TableManageProject extends Component {
+class TableManagerProject extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            usersRedux: []
+            projectsRedux: []
         }
     }
     componentDidMount() {
-        this.props.fetchUserRedux()
+        this.props.fetchProjectRedux()
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.listUsers !== this.props.listUsers) {
+        if (prevProps.listProjects !== this.props.listProjects) {
             this.setState({
-                usersRedux: this.props.listUsers
+                projectsRedux: this.props.listProjects
             })
         }
 
     }
-    handleDeleteUser = (user) => {
-        this.props.deleteAUserRedux(user.id)
+    handleDeleteProject = (project) => {
+        this.props.deleteAProjectRedux(project.id)
     }
-    handleEditUser = (user) => {
-        this.props.handleEditUserFromParentKey(user)
+    handleEditProject = (project) => {
+        this.props.handleEditProjectFromParentKey(project)
     }
 
     render() {
-        let arrUsers = this.state.usersRedux
+        let arrProjects = this.state.projectsRedux
         return (
             <React.Fragment>
-                <table id="TableManagerUser">
+                <table id="TableManagerProject">
                     <tbody>
                         <tr>
-                            <th>Email</th>
-                            <th>Firstname</th>
+                            <th>Name</th>
+                            <th>Actions</th>
+            
+                            {/* <th>Firstname</th>
                             <th>Lastname</th>
                             <th>Phone</th>
                             <th>Role</th>
                             <th>Status</th>
-                            <th>Actions</th>
+                            <th>Actions</th> */}
                         </tr>
 
-                        {arrUsers && arrUsers.length > 0 && arrUsers.map((item, index) => {
+                        {arrProjects && arrProjects.length > 0 && arrProjects.map((item, index) => {
                             return (
                                 <tr key={index}>
-                                    <td>{item.email}</td>
-                                    <td>{item.firstName}</td>
+                                    <td>{item.name}</td>
+                                    
+                                    {/* <td>{item.firstName}</td>
                                     <td>{item.lastName}</td>
                                     <td>{item.phone}</td>
                                     <td>{item.role}</td>
-                                    <td>{item.isActive}</td>
+                                    <td>{item.isActive}</td> */}
                                     <td>
                                         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5 }}>
-                                            <Tooltip title='Edit this members' >
+                                            <Tooltip title='Edit this projects' >
                                                 <EditIcon
                                                     sx={{
                                                         color: '#F79F1F',
@@ -72,11 +75,11 @@ class TableManageProject extends Component {
                                                         cursor: 'pointer'
                                                     }}
                                                     onClick={() => {
-                                                        this.handleEditUser(item)
+                                                        this.handleEditProject(item)
                                                     }}
                                                 />
                                             </Tooltip>
-                                            <Tooltip title='Delete this members' >
+                                            <Tooltip title='Delete this projects' >
                                                 <DeleteIcon
                                                     sx={{
                                                         color: '#eb2f06',
@@ -85,7 +88,7 @@ class TableManageProject extends Component {
                                                         cursor: 'pointer'
                                                     }}
                                                     onClick={() => {
-                                                        this.handleDeleteUser(item)
+                                                        this.handleDeleteProject(item)
                                                     }}
 
                                                 />
@@ -108,17 +111,17 @@ class TableManageProject extends Component {
 
 const mapStateToProps = state => {
     return {
-        listUsers: state.admin.users
+        listProjects: state.admin.projects
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchUserRedux: () => dispatch(actions.fetchAllUsersStart()),
-        deleteAUserRedux: (id) => dispatch(actions.deleteAUser(id)),
+        fetchProjectRedux: () => dispatch(actions.fetchAllProjectsStart()),
+        deleteAProjectRedux: (id) => dispatch(actions.deleteAProject(id)),
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableManageProject);
+export default connect(mapStateToProps, mapDispatchToProps)(TableManagerProject);
 
 

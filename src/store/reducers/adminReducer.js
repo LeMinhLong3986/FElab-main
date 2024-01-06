@@ -7,6 +7,7 @@ const initialState = {
     roles: [],
     positions: [],
     users: [],
+    projects: [],
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -62,6 +63,16 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_ALL_USER_FAILED:
             state.users = []
+            return {
+                ...state,
+            }
+            case actionTypes.FETCH_ALL_PROJECT_SUCCESS:
+            state.projects = action.projects
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_ALL_PROJECT_FAILED:
+            state.projects = []
             return {
                 ...state,
             }

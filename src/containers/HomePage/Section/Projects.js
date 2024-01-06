@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Box from '@mui/material/Box'
-
+import { FormattedMessage } from 'react-intl';
 // Import css files
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
