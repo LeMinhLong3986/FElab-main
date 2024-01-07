@@ -99,11 +99,11 @@ class UserRedux extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
     }
-    handleClickShowPassword = (event) => {
-        this.setState({
-            showPassword: !this.state.showPassword
-        })
-    }
+    // handleClickShowPassword = (event) => {
+    //     this.setState({
+    //         showPassword: !this.state.showPassword
+    //     })
+    // }
 
     // handleClickShowPassword = () => this.setShowPassword((show) => !show);
 
@@ -215,7 +215,7 @@ class UserRedux extends Component {
 
     }
     checkValidateInput = () => {
-        let isValid = true
+        let isValid = true;
         let arrCheck = ['email', 'password', 'firstName', 'lastName', 'phone']
         for (let i = 0; i < arrCheck.length; i++) {
             if (!this.state[arrCheck[i]]) {

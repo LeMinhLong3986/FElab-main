@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import { emitter } from '../../utils/emitter'
+import { emitter } from '../../../utils/emitter';
 import _ from 'lodash';
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
 
+const mdParser = new MarkdownIt(/* Markdown-it options */);
 class ModalEditProject extends Component {
 
     constructor(props) {
@@ -30,6 +33,7 @@ class ModalEditProject extends Component {
                 id: project.id,
                 name: project.name,
                 descriptionMarkdown: project.descriptionMarkdown,
+                descriptionHTML : project.descriptionHTML
                 // email: project.email,
                 // password: 'harcode',
                 // firstName: project.firstName,
@@ -46,13 +50,16 @@ class ModalEditProject extends Component {
     }
 
     handleOnChangeAddProject = (event, id) => {
-
         let copyState = { ...this.state }
         copyState[id] = event.target.value
-        this.setState({
-            ...copyState
-        })
+        this.setState(copyState)
+    }
 
+    handleEditorChange = ({ html, text }) => {
+        this.setState({
+            descriptionHTML: html,
+            descriptionMarkdown: text,
+        })
     }
     checkValidateInput = () => {
         let isValue = true
@@ -87,22 +94,24 @@ class ModalEditProject extends Component {
                 <ModalHeader toggle={() => { this.toggle() }}>Edit a new Project</ModalHeader>
                 <ModalBody>
                     <div className='modal-project-body'>
-                        <div className='input-container'>
+                        <div className='input-container' style={{ width: '100%'}}>
                             <label>Name</label>
                             <input
                                 type='text'
                                 onChange={(event) => { this.handleOnChangeAddProject(event, 'name') }}
                                 value={this.state.name}
-                                disabled
+                              
                             ></input>
                         </div>
 
-                        <div className='input-container'>
+                        <div className='input-container' style={{ width: '100%'}}>
                             <label>Descirption</label>
-                            <input
-                                disabled
-                                value={this.state.descriptionMarkdown}
-                                type='text' onChange={(event) => { this.handleOnChangeAddProject(event, 'descriptionMarkdown') }}></input>
+                            <MdEditor
+                            style={{ height: '500px' }}
+                            renderHTML={text => mdParser.render(text)}
+                            onChange={this.handleEditorChange}
+                            value={this.state.descriptionMarkdown}
+                        />
                         </div>
                     </div>
                 </ModalBody>

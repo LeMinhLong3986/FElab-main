@@ -6,8 +6,10 @@ import UserRedux from '../containers/System/Admin/UserRedux';
 import ManagerUser from '../containers/System/Admin/ManagerUser';
 import Header from '../containers/Header/Header';
 import ManagerSchedule from '../containers/System/Admin/ManagerSchedule';
-import ManageProjects from '../containers/System/project/ManageProjects'
+
 import ManageTeam from '../containers/System/Team/ManageTeam';
+import ProjectManage from '../containers/System/project/ProjectManage'
+
 class System extends Component {
     render() {
         const { systemMenuPath, isLoggedIn } = this.props;
@@ -21,7 +23,7 @@ class System extends Component {
                             <Route path="/system/user-redux" component={UserRedux} />
                             <Route path="/system/user-admin" component={ManagerUser} />
                             <Route path="/system/manage-schedule" component={ManagerSchedule} />
-                            <Route path="/system/manage-project" component={ManageProjects} />
+                            <Route path="/system/manage-project" component={ProjectManage} />
                             <Route path="/system/manage-team" component={ManageTeam} />
                             <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                         </Switch>

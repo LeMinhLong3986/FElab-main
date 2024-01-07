@@ -39,11 +39,12 @@ class Project extends Component {
             dots: true,
             infinite: true,
             speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 1,
+            slidesToShow: 4
+        
         };
 
         let { dataProject } = this.state
+
         return (
 
             <div className='section-project'>
@@ -53,8 +54,9 @@ class Project extends Component {
                         <button className='btn-section'>Xem thêm</button>
                     </div>
                     <div className='project-body'>
-                        <Slider {...settings} >
-                            {dataProject && dataProject.length > 0 &&
+                  
+                        <Slider {...settings}>
+                            {!!dataProject && !!dataProject.length > 0 &&
                                 dataProject.map((item, index) => {
                                     return (
                                         <div className='project-cusomize'
